@@ -1,0 +1,27 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "defaultErrnoRet": 1,
+  "version": 3,
+  "syscalls": [
+    {
+      "names": [
+        "socket",
+        "connect",
+        "bind",
+        "listen",
+        "accept",
+        "fork",
+        "clone",
+        "ptrace",
+        "mount",
+        "umount2",
+        "chmod",
+        "chown",
+        "setuid",
+        "setgid"
+      ],
+      "action": "SCMP_ACT_ERRNO",
+      "errno": 1
+    }
+  ]
+}
