@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: py-executor-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount Docker socket to allow spawning sibling containers
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Mount project directory for access to executor and sandbox
+      - .:/app
+    working_dir: /app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - executor-network
+
+networks:
+  executor-network:
+    driver: bridge
